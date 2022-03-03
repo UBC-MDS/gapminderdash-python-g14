@@ -1,28 +1,21 @@
-from dash import Dash, html, dcc, Input, Output
+from dash import Dash, Input, Output, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
-from gapminder import gapminder
-import pandas as pd
 
-# Set global app variable gapminder_data
-# so that we only need to instantiate this once
-
-gapminder_data = gapminder
+from src.queries import (
+    get_labels_countries_in_continent_code,
+    get_continent_labels,
+)
 
 from src.plotting import (
     plot_topGdp,
 )
 
-from src.queries import (
-    get_labels_countries_in_continent_code,
-    get_labels_continent_with_country_code,
+from src.components import (
+    app_header,
+    # card1_blahblah_component,
+    # card2_blahblah_component
 )
-
-# from src.components import(
-#     app_header
-#     card1_blahblah_component,
-#     card2_blahblah_component
-# )
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
@@ -35,8 +28,8 @@ app.layout = dbc.Container(
                 dbc.Row([app_header]),
                 dbc.Row(
                     [
-                        dbc.Col(card1_blahblah_component),
-                        dbc.Col(card2_blahblah_component),
+                        # dbc.Col(card1_blahblah_component),
+                        # dbc.Col(card2_blahblah_component),
                     ]
                 ),
             ]
@@ -47,8 +40,8 @@ app.layout = dbc.Container(
 
 # example of country dropdown options being updated based on selected continent
 @app.callback(
-    Output("component-id-in-app_header-of-country-msdd", "options"),
-    Input("continent-dd", "value"),
+    Output("country-selector", "options"),
+    Input("continent-selector", "value"),
 )
 def update_country_dd_options(continent_code):
     return get_labels_countries_in_continent_code(continent_code)

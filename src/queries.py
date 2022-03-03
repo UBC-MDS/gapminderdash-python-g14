@@ -1,51 +1,31 @@
+from gapminder import gapminder
+
+# Set global app variable gapminder_data
+# so that we only need to instantiate this once
+
+gapminder_data = gapminder
+
+
 def get_labels_countries_in_continent_code(continent_code="All"):
-    all_label = [{"label": "All countries", "value": "All"}]
     if continent_code == "All":
+        all_label = [{"label": "All countries", "value": "All"}]
         return all_label + [
-            {"label": x[0], "value": x[1]}
-            for x in dp.transformed_raw_data.loc[:, ["Country", "country_code"]]
-            .drop_duplicates()
-            .values
+            {"label": country, "value": country}
+            for country in gapminder_data["country"].unique().values
         ]
     else:
+        all_label = [{"label": f"All countries in {continent_code}", "value": "All"}]
         return all_label + [
-            {"label": x[0], "value": x[1]}
-            for x in dp.transformed_raw_data.loc[:, ["Country", "country_code"]]
-            .loc[dp.transformed_raw_data["continent_code"] == continent_code]
-            .drop_duplicates()
+            {"label": country, "value": country}
+            for country in gapminder_data["country"]
+            .loc[gapminder_data["continent"] == continent_code]
+            .unique()
             .values
         ]
 
 
-def get_labels_continent_with_country_code(country_code="All"):
+def get_continent_labels():
     all_label = [{"label": "All continents", "value": "All"}]
-    if country_code == "All":
-        return all_label + [
-            {"label": x[0], "value": x[1]}
-            for x in dp.transformed_raw_data.loc[:, ["Continent", "continent_code"]]
-            .drop_duplicates()
-            .values
-        ]
-    else:
-        return all_label + [
-            {"label": x[0], "value": x[1]}
-            for x in dp.transformed_raw_data.loc[:, ["Continent", "continent_code"]]
-            .loc[dp.transformed_raw_data["country_code"] == country_code]
-            .drop_duplicates()
-            .values
-        ]
-
-
-def get_labels_continent_with_continent_code(continent_code="All"):
-    prefix = "Continental Summary - {}"
-    if continent_code != "All":
-        continents = dp.transformed_raw_data.loc[
-            :, ["Continent", "continent_code"]
-        ].drop_duplicates()
-        label = continents.loc[continents["continent_code"] == continent_code][
-            "Continent"
-        ].values[0]
-    else:
-        label = "All continents"
-
-    return prefix.format(label)
+    return all_label + [
+        {"label": col, "value": col} for col in gapminder_data["continent"].unique()
+    ]

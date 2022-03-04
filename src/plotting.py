@@ -1,5 +1,5 @@
 import altair as alt
-from queries import get_continent_data_filtered_year
+from src.queries import get_continent_data_filtered_year
 import pandas as pd
 
 

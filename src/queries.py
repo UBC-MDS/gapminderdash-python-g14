@@ -11,7 +11,7 @@ def get_labels_countries_in_continent_code(continent_code="All"):
         all_label = [{"label": "All countries", "value": "All"}]
         return all_label + [
             {"label": country, "value": country}
-            for country in gapminder_data["country"].unique().values
+            for country in gapminder_data["country"].unique()
         ]
     else:
         all_label = [{"label": f"All countries in {continent_code}", "value": "All"}]
@@ -20,7 +20,6 @@ def get_labels_countries_in_continent_code(continent_code="All"):
             for country in gapminder_data["country"]
             .loc[gapminder_data["continent"] == continent_code]
             .unique()
-            .values
         ]
 
 

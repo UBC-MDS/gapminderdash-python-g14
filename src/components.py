@@ -4,9 +4,7 @@ from queries import (
     get_continent_labels,
 )
 
-from plotting import (
-    plot_topGdp,
-)
+from plotting import plot_countries_kpis, plot_gdp_exp, plot_topGdp
 
 app_header = [
     dcc.Dropdown(

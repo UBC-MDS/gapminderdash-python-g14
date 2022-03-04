@@ -3,7 +3,22 @@ from src.queries import get_continent_data_filtered_year
 import pandas as pd
 
 
-def plot_countries_kpis(selected_continent, selected_countries, country_kpi_type):
+def plot_countries_kpis(selected_continent, selected_countries):
+    kpi_data = get_continent_data_filtered_year("2007", selected_continent)
+
+    continent_mean_gdp = kpi_data.groupby("continent").mean()["gdpPercap"]
+    continent_mean_pop = kpi_data.groupby("continent").mean()["pop"]
+    continent_mean_lifeexp = kpi_data.groupby("continent").mean()["lifeExp"]
+    return (
+        round(continent_mean_gdp, 2),
+        round(continent_mean_pop, 2),
+        round(continent_mean_lifeexp, 2),
+    )
+
+
+def plot_countries_kpis(
+    selected_continent="All", selected_countries=None, country_kpi_type=1
+):
     kpi_data = get_continent_data_filtered_year("2007", selected_continent)
 
     # Show highest or lowest based on user selection
@@ -31,7 +46,7 @@ def plot_countries_kpis(selected_continent, selected_countries, country_kpi_type
     )
 
 
-def plot_gdp_exp(selected_continent, selected_countries):
+def plot_gdp_exp(selected_continent="All", selected_countries=None):
     plot_data = get_continent_data_filtered_year(
         "2007", selected_continent
     ).sort_values("gdpPercap", ascending=False)
@@ -72,7 +87,7 @@ def plot_gdp_exp(selected_continent, selected_countries):
     return chart.to_html()
 
 
-def plot_topGdp(selected_continent, selected_countries):
+def plot_topGdp(selected_continent="All", selected_countries=None):
     plot_data = get_continent_data_filtered_year(
         "2007", selected_continent
     ).sort_values("gdpPercap", ascending=False)[:10]

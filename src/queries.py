@@ -29,3 +29,8 @@ def get_continent_labels():
     return all_label + [
         {"label": col, "value": col} for col in gapminder_data["continent"].unique()
     ]
+
+
+def get_continent_data_filtered_year(year, continent):
+    data = gapminder_data.query("(year == @year) & (continent == @continent)")
+    return data

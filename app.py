@@ -8,7 +8,7 @@ from src.queries import (
 )
 
 from src.plotting import (
-    plot_topGdp,
+    plot_countries_kpis,
 )
 
 from src.components import (
@@ -60,7 +60,7 @@ def update_country_dd_options(continent_code):
 def update_card1_blahblah_component(
     selected_continent, selected_countries, country_kpi_type
 ):
-    return plot_topGdp(selected_continent, selected_countries, country_kpi_type)
+    return plot_countries_kpis(selected_continent, selected_countries, country_kpi_type)
 
 
 if __name__ == "__main__":

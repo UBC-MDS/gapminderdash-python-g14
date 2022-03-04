@@ -3,7 +3,7 @@ from src.queries import get_continent_data_filtered_year
 import pandas as pd
 
 
-def plot_countries_kpis(selected_continent, selected_countries):
+def plot_continent_kpis(selected_continent, selected_countries):
     kpi_data = get_continent_data_filtered_year("2007", selected_continent)
 
     continent_mean_gdp = kpi_data.groupby("continent").mean()["gdpPercap"]

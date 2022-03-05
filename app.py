@@ -13,6 +13,7 @@ from src.component_app_header import app_header
 from src.component_countries_kpis import countries_kpi_cards_div
 from src.component_gdp_lifeexp import gdp_exp_card
 from src.component_topgdp import top_gdp_card
+from src.component_continent_kpis import continent_kpi_cards
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
@@ -26,7 +27,10 @@ app.layout = dbc.Container(
                 dbc.Row(  # row 2: country kpis and ...
                     [dbc.Col(countries_kpi_cards_div, width=6)]
                 ),
-                dbc.Row(  # row 3: some other stuff
+                dbc.Row(  # row 3: continent kpis and ...
+                    [dbc.Col(continent_kpi_cards, width=6)]
+                ),
+                dbc.Row(  # row 4: some other stuff
                     [
                         dbc.Col(gdp_exp_card, width=4),
                         dbc.Col(top_gdp_card, width=4),

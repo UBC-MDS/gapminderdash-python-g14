@@ -20,7 +20,6 @@ app_header = [
     dbc.Col(
         dcc.Dropdown(
             id="country-selector",
-            value=["All"],
             options=get_labels_countries_in_continent_code(),
             multi=True,
             # style={"width": "50%"},

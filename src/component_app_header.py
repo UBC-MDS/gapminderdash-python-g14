@@ -5,7 +5,7 @@ from src.queries import (
     get_continent_labels,
 )
 
-from plotting import plot_countries_kpis, plot_gdp_exp, plot_topGdp
+from src.plotting import plot_countries_kpis, plot_gdp_exp, plot_topGdp
 
 app_header = [
     dbc.Col(html.H3("Gapminder Dashboard")),
@@ -20,7 +20,6 @@ app_header = [
     dbc.Col(
         dcc.Dropdown(
             id="country-selector",
-            value="All",
             options=get_labels_countries_in_continent_code(),
             multi=True,
             # style={"width": "50%"},

@@ -1,17 +1,20 @@
 from dash import html
 import dash_bootstrap_components as dbc
+from src.plotting import plot_gdp_exp
 
-gdp_exp_card = (
+gdp_exp_card = [
     dbc.Card(
-        dbc.CardBody(
-            [
-                html.H4("GDP vs Life Expectancy", className="card-title"),
-                html.Iframe(
-                    id="variables-comparisons-plot",
-                    style={"border-width": "0", "width": "100%", "height": "300px"},
-                ),
-            ]
-        ),
-        className="col-md-4 mt-3",
+        [
+            dbc.CardHeader(html.H4("GDP vs Life Expectancy", className="card-title")),
+            dbc.CardBody(
+                [
+                    html.Iframe(
+                        id="gdp-exp-plot",
+                        srcDoc=plot_gdp_exp(),
+                        style={"border-width": "0", "width": "100%", "height": "300px"},
+                    ),
+                ]
+            ),
+        ]
     ),
-)
+]

@@ -8,14 +8,12 @@ gapminder_data = gapminder
 
 def get_labels_countries_in_continent_code(continent_code="All"):
     if continent_code == "All":
-        all_label = [{"label": "All countries", "value": "All"}]
-        return all_label + [
+        return [
             {"label": country, "value": country}
             for country in gapminder_data["country"].unique()
         ]
     else:
-        all_label = [{"label": f"All countries in {continent_code}", "value": "All"}]
-        return all_label + [
+        return [
             {"label": country, "value": country}
             for country in gapminder_data["country"]
             .loc[gapminder_data["continent"] == continent_code]
@@ -31,5 +29,8 @@ def get_continent_labels():
 
 
 def get_continent_data_filtered_year(year, continent):
-    data = gapminder_data.query("(year == @year) & (continent == @continent)")
+    if continent == "All":
+        data = gapminder_data.query("year == @year")
+    else:
+        data = gapminder_data.query("(year == @year) & (continent == @continent)")
     return data

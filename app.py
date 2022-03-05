@@ -4,10 +4,14 @@ import dash_bootstrap_components as dbc
 
 from src.queries import (
     get_labels_countries_in_continent_code,
-    get_continent_labels,
 )
 
-from src.plotting import plot_gdp_exp, plot_topGdp
+from src.plotting import (
+    plot_gdp_exp,
+    plot_topGdp,
+    plot_countries_kpis,
+    plot_continent_kpis,
+)
 
 from src.component_app_header import app_header
 from src.component_countries_kpis import countries_kpi_cards_div
@@ -25,15 +29,15 @@ app.layout = dbc.Container(
             [
                 dbc.Row(app_header),  # row 1: app header
                 dbc.Row(  # row 2: country kpis and ...
-                    [dbc.Col(countries_kpi_cards_div, width=6)]
+                    [
+                        dbc.Col(countries_kpi_cards_div, width=6),
+                        dbc.Col(continent_kpi_cards, width=6),
+                    ]
                 ),
                 dbc.Row(  # row 3: continent kpis and ...
-                    [dbc.Col(continent_kpi_cards, width=6)]
-                ),
-                dbc.Row(  # row 4: some other stuff
                     [
-                        dbc.Col(gdp_exp_card, width=4),
-                        dbc.Col(top_gdp_card, width=4),
+                        dbc.Col(gdp_exp_card, width=6),
+                        dbc.Col(top_gdp_card, width=6),
                     ]
                 ),
             ]
@@ -60,7 +64,6 @@ def update_country_dd_options(continent_code):
     ],
 )
 def update_gdp_exp_component(selected_continent, selected_countries):
-    print(selected_countries)
     return plot_gdp_exp(selected_continent, selected_countries)
 
 
@@ -73,8 +76,43 @@ def update_gdp_exp_component(selected_continent, selected_countries):
     ],
 )
 def update_gdp_exp_component(selected_continent, selected_countries):
-    print(selected_countries)
     return plot_topGdp(selected_continent, selected_countries)
+
+
+# Update Country KPIs
+@app.callback(
+    [
+        Output(component_id="gdp_country", component_property="children"),
+        Output(component_id="pop_country", component_property="children"),
+        Output(component_id="lifeexp_country", component_property="children"),
+        Output(component_id="gdp_value", component_property="children"),
+        Output(component_id="pop_value", component_property="children"),
+        Output(component_id="lifeexp_value", component_property="children"),
+    ],
+    [
+        Input(component_id="continent-selector", component_property="value"),
+        Input(component_id="country-selector", component_property="value"),
+        Input(component_id="country-kpi-type", component_property="value"),
+    ],
+)
+def update_country_kpis(selected_continent, selected_countries, country_kpi_type):
+    return plot_countries_kpis(selected_continent, selected_countries, country_kpi_type)
+
+
+# Update Continent KPIs
+@app.callback(
+    [
+        Output(component_id="continent-mean-gdp", component_property="children"),
+        Output(component_id="continent-mean-pop", component_property="children"),
+        Output(component_id="continent-mean-lifeexp", component_property="children"),
+    ],
+    [
+        Input(component_id="continent-selector", component_property="value"),
+        Input(component_id="country-selector", component_property="value"),
+    ],
+)
+def update_continent_kpis(selected_continent, selected_countries):
+    return plot_continent_kpis(selected_continent, selected_countries)
 
 
 if __name__ == "__main__":

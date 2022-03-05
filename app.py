@@ -115,5 +115,36 @@ def update_continent_kpis(selected_continent, selected_countries):
     return plot_continent_kpis(selected_continent, selected_countries)
 
 
+
+# Update time series plot
+@app.callback(
+    Output(component_id="timeseries-plot", "srcDoc"),
+    Output(component_id='timeseries-title', 'children'),
+    Input(component_id="continent-selector", "value"),
+    Input(component_id="country-selector", "value"),
+    Input(component_id="timeseries-col", "value"),
+)
+def update_plot_timeseries(selected_continent, selected_countries, timeseries_col):
+    if selected_continent == "All":
+        data = gapminder_data.groupby(['continent', 'year']).mean().reset_index()
+        title = f'{cols[timeseries_col]} for all continents'
+        return (time_series_plot(data, timeseries_col, True), title)
+    
+    elif not selected_countries:
+        grouped = gapminder_data.groupby(['continent', 'year']).mean().reset_index()
+        filtered = grouped.query(
+            "(continent == @selected_continent)"
+        )
+        title = f'{cols[timeseries_col]} for all countries in {selected_continent}'
+        return (time_series_plot(filtered, timeseries_col, True), title)
+
+    else:
+        filtered = gapminder_data.query(
+            "(country == @selected_countries) & (continent == @selected_continent)"
+        )
+        title = f"{cols[timeseries_col]} for {', '.join(selected_countries)}"
+        return (time_series_plot(filtered, timeseries_col), title)
+
+
 if __name__ == "__main__":
     app.run_server()

@@ -1,6 +1,15 @@
 import altair as alt
 from src.queries import get_continent_data_filtered_year
 import pandas as pd
+from vega_datasets import data
+
+alt.renderers.enable("default")
+
+# Load map data
+world = data.world_110m()
+world.keys()
+world["objects"].keys()
+world_map = alt.topo_feature(data.world_110m.url, "countries")
 
 
 def plot_continent_kpis(selected_continent="All", selected_countries=None):
@@ -131,3 +140,27 @@ def plot_topGdp(selected_continent="All", selected_countries=None):
         .configure_view(strokeWidth=0)
     ).properties(width=350, height=200)
     return chart.to_html()
+
+
+def draw_map(selected_continent):
+    map_settings = []
+    if selected_continent == "All":
+        map_settings = ("equalEarth", 0, 0)
+    elif selected_continent == "Africa":
+        map_settings = ("naturalEarth1", 300, [200, 210])
+    elif selected_continent == "Asia":
+        map_settings = ("naturalEarth1", 300, [-100, 300])
+    elif selected_continent == "Europe":
+        map_settings = ("naturalEarth1", 500, [200, 610])
+    elif selected_continent == "Americas":
+        map_settings = ("naturalEarth1", 150, [600, 250])
+    elif selected_continent == "Oceania":
+        map_settings = ("naturalEarth1", 400, [-450, 0])
+    map = (
+        alt.Chart(world_map)
+        .mark_geoshape(fill="#2a1d0c", stroke="#706545")
+        .project(type=map_settings[0], scale=map_settings[1], translate=map_settings[2])
+        .configure_view(strokeWidth=0)
+    ).properties(width=720, height=400)
+
+    return map.to_html()

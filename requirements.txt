@@ -5,3 +5,4 @@ gapminder==0.1
 pandas==1.4.1
 gunicorn
 jsonschema==3.0
+vega_datasets

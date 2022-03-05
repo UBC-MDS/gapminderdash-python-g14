@@ -87,7 +87,7 @@ def update_gdp_exp_component(selected_continent, selected_countries):
         Input(component_id="country-selector", component_property="value"),
     ],
 )
-def update_gdp_exp_component(selected_continent, selected_countries):
+def update_top_gdp_component(selected_continent, selected_countries):
     return plot_topGdp(selected_continent, selected_countries)
 
 

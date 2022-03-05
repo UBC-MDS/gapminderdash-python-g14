@@ -103,6 +103,7 @@ def plot_gdp_exp(selected_continent="All", selected_countries=None):
 
 
 def plot_topGdp(selected_continent="All", selected_countries=None):
+
     plot_data = get_continent_data_filtered_year(2007, selected_continent).sort_values(
         "gdpPercap", ascending=False
     )[:10]
@@ -110,9 +111,10 @@ def plot_topGdp(selected_continent="All", selected_countries=None):
 
     # If countries are selected
     if selected_countries != None:
-        selected_countries_data = plot_data.query(
-            "country in @selected_countries"
-        ).sort_values("gdpPercap", ascending=False)
+        continent_data = get_continent_data_filtered_year(2007, selected_continent)
+        selected_countries_data = continent_data.loc[
+            continent_data["country"].isin(selected_countries)
+        ].sort_values("gdpPercap", ascending=False)
         plot_data = pd.concat(
             [plot_data, selected_countries_data], ignore_index=True
         ).sort_values("gdpPercap", ascending=False)
@@ -124,6 +126,7 @@ def plot_topGdp(selected_continent="All", selected_countries=None):
         ] = True
         plot_data.drop_duplicates(inplace=True)
 
+    print(plot_data)
     chart = (
         alt.Chart(plot_data)
         .mark_bar()

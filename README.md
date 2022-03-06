@@ -14,17 +14,16 @@ The default view of the dashboard is comprised of a chloropleth map (which discl
 
 The dashboard can be of significant use for consumers who wish to identify systematic misconceptions about important global trends/ proportions and examine how they evolved over the years.
 
-
 ## Usage
 
-The deployed version of the app can be found [here]():
+The deployed version of the app can be found [here](https://gapdash14.herokuapp.com/):
 
-A basic walk-through of the dashboard is as follows:
+A basic overview of the dashboard is as follows:
 
-- Run the app from the terminal as described in the installation section
-- The landing page shows data for all continents by default.
-- Select the desired continent and/or countries to analyze their performance in terms of key performance indicators (GDP, life expectancy and population)
-- The time series plot also lets the user select the metric (GDP or life expectancy) to review trends exhibited by those measures across the years based on the input selection.
+-   The app can be run from the terminal as described in the installation section
+-   The landing page shows data for all continents by default.
+-   Select the desired continent and/or countries to analyze their performance in terms of key performance indicators (GDP, life expectancy and population)
+-   The time series plot also lets the user select the metric (GDP or life expectancy) to review trends exhibited by those measures across the years based on the input selection.
 
 ## Proposed Dashboard Layout
 
@@ -32,7 +31,13 @@ A basic walk-through of the dashboard is as follows:
 
 ## Contributions
 
-Contributors: Amir Abbas Shojakhani, Luke Collins and Sukhleen Kaur. We welcome and recognize all contributions. Please find the guide for contribution in [Contributing document](https://github.com/UBC-MDS/gapminderdash-python-g14/blob/feat-map/CONTRIBUTING.md).
+Contributors:
+-   Amir Abbas Shojakhani
+-   Luke Collins
+-   Sukhleen Kaur.
+
+We welcome and recognize all contributions. Please find the guide for contribution in [Contributing document](https://github.com/UBC-MDS/gapminderdash-python-g14/blob/feat-map/CONTRIBUTING.md).
+
 
 ## Installation
 
@@ -48,7 +53,10 @@ To run the app locally:
 
 2.  In the command line, enter:
 
-`python app.py`
+```
+python app.py
+```
+
 
 3.  Copy the address printed out after "Dash is running on" to a browser to view the Dash app.
 

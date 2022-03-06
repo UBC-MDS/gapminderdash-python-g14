@@ -126,7 +126,6 @@ def plot_topGdp(selected_continent="All", selected_countries=None):
         ] = True
         plot_data.drop_duplicates(inplace=True)
 
-    # print(plot_data)
     chart = (
         alt.Chart(plot_data)
         .mark_bar()

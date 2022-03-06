@@ -45,7 +45,7 @@ countries_kpi_cards_div = [
                                                     children="-",
                                                     className="card-text",
                                                     style={
-                                                        "font-size": "24px",
+                                                        "font-size": "16px",
                                                         "font-weight": "bold",
                                                     },
                                                 ),
@@ -83,7 +83,7 @@ countries_kpi_cards_div = [
                                                     children="-",
                                                     className="card-text",
                                                     style={
-                                                        "font-size": "24px",
+                                                        "font-size": "16px",
                                                         "font-weight": "bold",
                                                     },
                                                 ),
@@ -121,7 +121,7 @@ countries_kpi_cards_div = [
                                                     children="-",
                                                     className="card-text",
                                                     style={
-                                                        "font-size": "24px",
+                                                        "font-size": "16px",
                                                         "font-weight": "bold",
                                                     },
                                                 ),

@@ -1,3 +1,4 @@
+from time import time
 from dash import Dash, Input, Output, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
@@ -11,6 +12,8 @@ from src.plotting import (
     plot_topGdp,
     plot_countries_kpis,
     plot_continent_kpis,
+    draw_map,
+    plot_timeseries_filtered
 )
 
 from src.component_app_header import app_header
@@ -18,6 +21,8 @@ from src.component_countries_kpis import countries_kpi_cards_div
 from src.component_gdp_lifeexp import gdp_exp_card
 from src.component_topgdp import top_gdp_card
 from src.component_continent_kpis import continent_kpi_cards
+from src.component_map import map_card
+from src.component_timeseries import timeseries_card
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
@@ -28,13 +33,19 @@ app.layout = dbc.Container(
         html.Div(
             [
                 dbc.Row(app_header),  # row 1: app header
+                dbc.Row(
+                    [
+                        dbc.Col(map_card, width=8),
+                        dbc.Col(timeseries_card, width = 4)
+                    ]
+                ),
                 dbc.Row(  # row 2: country kpis and ...
                     [
                         dbc.Col(countries_kpi_cards_div, width=6),
                         dbc.Col(continent_kpi_cards, width=6),
                     ]
                 ),
-                dbc.Row(  # row 3: continent kpis and ...
+                dbc.Row(  # row 4: continent kpis and ...
                     [
                         dbc.Col(gdp_exp_card, width=6),
                         dbc.Col(top_gdp_card, width=6),
@@ -53,6 +64,15 @@ app.layout = dbc.Container(
 )
 def update_country_dd_options(continent_code):
     return get_labels_countries_in_continent_code(continent_code)
+
+
+# Update map
+@app.callback(
+    Output(component_id="map", component_property="srcDoc"),
+    Input(component_id="continent-selector", component_property="value"),
+)
+def update_map(selected_continent):
+    return draw_map(selected_continent)
 
 
 # Update GDP vs Life Expectancy plot
@@ -75,7 +95,7 @@ def update_gdp_exp_component(selected_continent, selected_countries):
         Input(component_id="country-selector", component_property="value"),
     ],
 )
-def update_gdp_exp_component(selected_continent, selected_countries):
+def update_top_gdp_component(selected_continent, selected_countries):
     return plot_topGdp(selected_continent, selected_countries)
 
 
@@ -115,35 +135,16 @@ def update_continent_kpis(selected_continent, selected_countries):
     return plot_continent_kpis(selected_continent, selected_countries)
 
 
-
 # Update time series plot
 @app.callback(
-    Output(component_id="timeseries-plot", "srcDoc"),
-    Output(component_id='timeseries-title', 'children'),
-    Input(component_id="continent-selector", "value"),
-    Input(component_id="country-selector", "value"),
-    Input(component_id="timeseries-col", "value"),
+    Output(component_id="timeseries-plot", component_property= "srcDoc"),
+    Output(component_id='timeseries-title', component_property='children'),
+    Input(component_id="continent-selector", component_property="value"),
+    Input(component_id="country-selector", component_property="value"),
+    Input(component_id="timeseries-col", component_property="value"),
 )
 def update_plot_timeseries(selected_continent, selected_countries, timeseries_col):
-    if selected_continent == "All":
-        data = gapminder_data.groupby(['continent', 'year']).mean().reset_index()
-        title = f'{cols[timeseries_col]} for all continents'
-        return (time_series_plot(data, timeseries_col, True), title)
-    
-    elif not selected_countries:
-        grouped = gapminder_data.groupby(['continent', 'year']).mean().reset_index()
-        filtered = grouped.query(
-            "(continent == @selected_continent)"
-        )
-        title = f'{cols[timeseries_col]} for all countries in {selected_continent}'
-        return (time_series_plot(filtered, timeseries_col, True), title)
-
-    else:
-        filtered = gapminder_data.query(
-            "(country == @selected_countries) & (continent == @selected_continent)"
-        )
-        title = f"{cols[timeseries_col]} for {', '.join(selected_countries)}"
-        return (time_series_plot(filtered, timeseries_col), title)
+    return plot_timeseries_filtered(selected_continent, selected_countries, timeseries_col)
 
 
 if __name__ == "__main__":

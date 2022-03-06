@@ -16,7 +16,7 @@ The dashboard can be of significant use for consumers who wish to identify syste
 
 ## Usage
 
-The deployed version of the app can be found [here]():
+The deployed version of the app can be found [here](https://gapdash14.herokuapp.com/):
 
 A basic overview of the dashboard is as follows:
 
@@ -51,7 +51,7 @@ To run the app locally:
 
 2.  In the command line, enter:
 
-`python app.py`
+```python app.py```
 
 3.  Copy the address printed out after "Dash is running on" to a browser to view the Dash app.
 

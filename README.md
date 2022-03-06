@@ -23,7 +23,6 @@ A basic overview of the dashboard is as follows:
 -   The app can be run from the terminal as described in the installation section
 -   The landing page shows data for all continents by default.
 -   Select the desired continent and/or countries to analyze their performance in terms of key performance indicators (GDP, life expectancy and population)
--   The time series plot also lets the user select the metric (GDP or life expectancy) to review trends exhibited by those measures across the years based on the input selection.
 
 ## Proposed Dashboard Layout
 

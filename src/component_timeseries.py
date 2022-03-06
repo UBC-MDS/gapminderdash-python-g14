@@ -2,7 +2,7 @@ from dash import html
 import dash_bootstrap_components as dbc
 
 
-timeseries-buttons = html.Div(
+timeseries_buttons = html.Div(
             [
                 dbc.RadioItems(
                     id="timeseries-col",
@@ -17,20 +17,25 @@ timeseries-buttons = html.Div(
                     value='gdpPercap',
                 )
             ],
-            className="radio-group col-md-4 mt-3",
+            className="radio-group mt-3",
         )
 
 
-timeseries-card = 
-        dbc.Card(
+timeseries_card = dbc.Card(
             dbc.CardBody(
                 [
-                    html.H4("Timeseries", className="card-title", id='timeseries-title'),
-                    html.Iframe(
-                        id="timeseries-plot",
-                        style={"border-width": "0", "width": "100%", "height": "350px"},
+                    dbc.Row(timeseries_buttons),
+                    dbc.Row(
+                        [
+                        html.H4("Timeseries", className="card-title", id='timeseries-title'),
+                        html.Iframe(
+                            id="timeseries-plot",
+                            style={"border-width": "0", "width": "100%", "height": "350px"},
                     ),
+                        ]
+                    )
+                    
                 ]
             ),
-            className="col-md-4 mt-3",
+            className="mt-3",
         )

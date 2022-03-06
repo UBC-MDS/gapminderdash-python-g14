@@ -34,3 +34,16 @@ def get_continent_data_filtered_year(year, continent):
     else:
         data = gapminder_data.query("(year == @year) & (continent == @continent)")
     return data
+
+def get_grouped_continent(continent, country):
+    if country is None or country == []:
+        data = gapminder_data.groupby(['continent', 'year'])
+
+    else:
+        data = gapminder_data.query(
+            "(country == @country) & (continent == @continent)"
+        )
+
+    return data
+
+    

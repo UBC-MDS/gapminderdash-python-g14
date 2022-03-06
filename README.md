@@ -31,11 +31,13 @@ A basic overview of the dashboard is as follows:
 
 ## Contributions
 
+Contributors:
 -   Amir Abbas Shojakhani
 -   Luke Collins
 -   Sukhleen Kaur.
 
 We welcome and recognize all contributions. Please find the guide for contribution in [Contributing document](https://github.com/UBC-MDS/gapminderdash-python-g14/blob/feat-map/CONTRIBUTING.md).
+
 
 ## Installation
 
@@ -51,7 +53,10 @@ To run the app locally:
 
 2.  In the command line, enter:
 
-```python app.py```
+```
+python app.py
+```
+
 
 3.  Copy the address printed out after "Dash is running on" to a browser to view the Dash app.
 

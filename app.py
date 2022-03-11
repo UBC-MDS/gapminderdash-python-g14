@@ -62,33 +62,6 @@ app.layout = html.Div(
     ]
 )
 
-# app.layout = html.Div(
-#     # fluid=True,
-#     children=[
-#         html.Div(
-#             [
-#                 dbc.Row(app_header),  # row 1: app header
-#                 dbc.Row(
-#                     [dbc.Col(map_card, width=6), dbc.Col(timeseries_card, width=6)]
-#                 ),
-#                 dbc.Row(  # row 2: country kpis and ...
-#                     [
-#                         dbc.Col(countries_kpi_cards_div, width=6),
-#                         dbc.Col(continent_kpi_cards, width=6),
-#                     ]
-#                 ),
-#                 dbc.Row(  # row 4: continent kpis and ...
-#                     [
-#                         dbc.Col(gdp_exp_card, width=6),
-#                         dbc.Col(top_gdp_card, width=6),
-#                     ]
-#                 ),
-#             ]
-#         )
-#     ],
-#     # style={"padding": "5px 5px"},
-# )
-
 # example of country dropdown options being updated based on selected continent
 @app.callback(
     Output("country-selector", "options"),

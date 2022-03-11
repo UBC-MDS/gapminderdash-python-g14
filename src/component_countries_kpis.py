@@ -19,11 +19,9 @@ countries_kpi_type_div = [
 countries_kpi_cards_div = [
     dbc.Card(
         [
-            dbc.CardHeader(
-                [html.H4("Country High-Low Key Stats", className="card-title")]
-            ),
             dbc.CardBody(
                 [
+                    html.H4("Country High-Low Key Stats", className="card-title"),
                     dbc.Row(countries_kpi_type_div),
                     dbc.Row(
                         [
@@ -36,7 +34,7 @@ countries_kpi_cards_div = [
                                                     "GDP",
                                                     className="card-title",
                                                     style={
-                                                        "font-size": "18px",
+                                                        "font-size": "16px",
                                                         "font-weight": "bold",
                                                     },
                                                 ),
@@ -45,7 +43,7 @@ countries_kpi_cards_div = [
                                                     children="-",
                                                     className="card-text",
                                                     style={
-                                                        "font-size": "16px",
+                                                        "font-size": "14px",
                                                         "font-weight": "bold",
                                                     },
                                                 ),
@@ -54,7 +52,7 @@ countries_kpi_cards_div = [
                                                     children="-",
                                                     className="card-text",
                                                     style={
-                                                        "font-size": "14px",
+                                                        "font-size": "13px",
                                                     },
                                                 ),
                                             ]
@@ -74,7 +72,7 @@ countries_kpi_cards_div = [
                                                     "Population",
                                                     className="card-title",
                                                     style={
-                                                        "font-size": "18px",
+                                                        "font-size": "16px",
                                                         "font-weight": "bold",
                                                     },
                                                 ),
@@ -83,7 +81,7 @@ countries_kpi_cards_div = [
                                                     children="-",
                                                     className="card-text",
                                                     style={
-                                                        "font-size": "16px",
+                                                        "font-size": "14px",
                                                         "font-weight": "bold",
                                                     },
                                                 ),
@@ -92,7 +90,7 @@ countries_kpi_cards_div = [
                                                     children="-",
                                                     className="card-text",
                                                     style={
-                                                        "font-size": "14px",
+                                                        "font-size": "13px",
                                                     },
                                                 ),
                                             ]
@@ -109,10 +107,10 @@ countries_kpi_cards_div = [
                                         dbc.CardBody(
                                             [
                                                 html.H5(
-                                                    children="Life Expectancy",
+                                                    children="Life Exp",
                                                     className="card-title",
                                                     style={
-                                                        "font-size": "18px",
+                                                        "font-size": "16px",
                                                         "font-weight": "bold",
                                                     },
                                                 ),
@@ -121,7 +119,7 @@ countries_kpi_cards_div = [
                                                     children="-",
                                                     className="card-text",
                                                     style={
-                                                        "font-size": "16px",
+                                                        "font-size": "14px",
                                                         "font-weight": "bold",
                                                     },
                                                 ),
@@ -130,7 +128,7 @@ countries_kpi_cards_div = [
                                                     children="-",
                                                     className="card-text",
                                                     style={
-                                                        "font-size": "14px",
+                                                        "font-size": "13px",
                                                     },
                                                 ),
                                             ]
@@ -145,6 +143,6 @@ countries_kpi_cards_div = [
                     ),
                 ]
             ),
-        ]
+        ],
     )
 ]

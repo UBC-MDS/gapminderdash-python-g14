@@ -1,3 +1,4 @@
+from ast import Div
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 from src.queries import (
@@ -7,22 +8,33 @@ from src.queries import (
 
 from src.plotting import plot_countries_kpis, plot_gdp_exp, plot_topGdp
 
-app_header = [
-    dbc.Col(html.H3("Gapminder Dashboard")),
-    dbc.Col(
-        dcc.Dropdown(
-            id="continent-selector",
-            value="All",
-            # style={"width": "50%"},
-            options=get_continent_labels(),
-        )
+app_header = dbc.Container(
+    dbc.Row(
+        [
+            dbc.Col(
+                html.H3("Gapminder Dashboard", style={"font-size": "24px"}),
+                width=3,
+                style={"color": "white"},
+            ),
+            dbc.Col(
+                dcc.Dropdown(
+                    id="continent-selector",
+                    value="All",
+                    options=get_continent_labels(),
+                ),
+                width=4,
+            ),
+            dbc.Col(
+                dcc.Dropdown(
+                    id="country-selector",
+                    options=get_labels_countries_in_continent_code(),
+                    multi=True,
+                ),
+                width=5,
+            ),
+        ]
     ),
-    dbc.Col(
-        dcc.Dropdown(
-            id="country-selector",
-            options=get_labels_countries_in_continent_code(),
-            multi=True,
-            # style={"width": "50%"},
-        )
-    ),
-]
+    className="p-3",
+    style={"background-color": "black"},
+    fluid=True,
+)

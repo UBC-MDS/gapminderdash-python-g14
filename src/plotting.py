@@ -99,7 +99,7 @@ def plot_gdp_exp(selected_continent="All", selected_countries=None):
         .interactive()
         .configure_axis(grid=False)
         .configure_view(strokeWidth=0)
-    ).properties(width=300, height=250)
+    ).properties(width=300, height=150)
     return chart.to_html()
 
 
@@ -138,7 +138,7 @@ def plot_topGdp(selected_continent="All", selected_countries=None):
         .interactive()
         .configure_axis(grid=False)
         .configure_view(strokeWidth=0)
-    ).properties(width=350, height=200)
+    ).properties(width=350, height=120)
     return chart.to_html()
 
 
@@ -149,19 +149,19 @@ def draw_map(selected_continent):
         alt.Chart(world_map)
         .mark_geoshape(fill="#2a1d0c", stroke="#706545")
         .configure_view(strokeWidth=0)
-    ).properties(width=720, height=400)
+    ).properties(width=450, height=300)
 
     if selected_continent != "All":
         if selected_continent == "Africa":
-            map_settings = ("naturalEarth1", 300, [200, 210])
+            map_settings = ("naturalEarth1", 200, [170, 110])
         elif selected_continent == "Asia":
             map_settings = ("naturalEarth1", 300, [-100, 300])
         elif selected_continent == "Europe":
             map_settings = ("naturalEarth1", 500, [200, 610])
         elif selected_continent == "Americas":
-            map_settings = ("naturalEarth1", 150, [600, 250])
+            map_settings = ("naturalEarth1", 130, [400, 170])
         elif selected_continent == "Oceania":
-            map_settings = ("naturalEarth1", 400, [-450, 0])
+            map_settings = ("naturalEarth1", 400, [-550, 0])
         map = (
             alt.Chart(world_map)
             .mark_geoshape(fill="#2a1d0c", stroke="#706545")
@@ -169,7 +169,7 @@ def draw_map(selected_continent):
                 type=map_settings[0], scale=map_settings[1], translate=map_settings[2]
             )
             .configure_view(strokeWidth=0)
-        ).properties(width=720, height=400)
+        ).properties(width=450, height=300)
 
     return map.to_html()
 
@@ -190,6 +190,7 @@ def time_series_plot(df, ycol, all_continents=False):
                 tooltip=[ycol, "year"],
             )
             .interactive()
+            .properties(width=350, height=200)
         )
 
     else:
@@ -203,6 +204,7 @@ def time_series_plot(df, ycol, all_continents=False):
                 tooltip=[ycol, "year"],
             )
             .interactive()
+            .properties(width=350, height=200)
         )
 
     return chart.to_html()
@@ -222,7 +224,6 @@ def plot_timeseries_filtered(
         return (time_series_plot(data, timeseries_col, True), title)
 
     elif selected_countries is None or selected_countries == []:
-        print("jbsjhbcsbcsb\n\n\n\n\n\n\n")
         print(selected_countries)
         grouped = (
             get_grouped_continent(selected_continent, selected_countries)

@@ -13,7 +13,7 @@ from src.plotting import (
     plot_countries_kpis,
     plot_continent_kpis,
     draw_map,
-    plot_timeseries_filtered
+    plot_timeseries_filtered,
 )
 
 from src.component_app_header import app_header
@@ -27,6 +27,8 @@ from src.component_timeseries import timeseries_card
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
+app.title = "gapminderDash"
+
 app.layout = dbc.Container(
     fluid=True,
     children=[
@@ -34,10 +36,7 @@ app.layout = dbc.Container(
             [
                 dbc.Row(app_header),  # row 1: app header
                 dbc.Row(
-                    [
-                        dbc.Col(map_card, width=8),
-                        dbc.Col(timeseries_card, width = 4)
-                    ]
+                    [dbc.Col(map_card, width=8), dbc.Col(timeseries_card, width=4)]
                 ),
                 dbc.Row(  # row 2: country kpis and ...
                     [
@@ -137,14 +136,16 @@ def update_continent_kpis(selected_continent, selected_countries):
 
 # Update time series plot
 @app.callback(
-    Output(component_id="timeseries-plot", component_property= "srcDoc"),
-    Output(component_id='timeseries-title', component_property='children'),
+    Output(component_id="timeseries-plot", component_property="srcDoc"),
+    Output(component_id="timeseries-title", component_property="children"),
     Input(component_id="continent-selector", component_property="value"),
     Input(component_id="country-selector", component_property="value"),
     Input(component_id="timeseries-col", component_property="value"),
 )
 def update_plot_timeseries(selected_continent, selected_countries, timeseries_col):
-    return plot_timeseries_filtered(selected_continent, selected_countries, timeseries_col)
+    return plot_timeseries_filtered(
+        selected_continent, selected_countries, timeseries_col
+    )
 
 
 if __name__ == "__main__":

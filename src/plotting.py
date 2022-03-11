@@ -1,3 +1,4 @@
+from turtle import title
 import altair as alt
 from src.queries import get_continent_data_filtered_year, get_grouped_continent
 import pandas as pd
@@ -143,64 +144,94 @@ def plot_topGdp(selected_continent="All", selected_countries=None):
 
 def draw_map(selected_continent):
     map_settings = []
-    if selected_continent == "All":
-        map_settings = ("equalEarth", 0, 0)
-    elif selected_continent == "Africa":
-        map_settings = ("naturalEarth1", 300, [200, 210])
-    elif selected_continent == "Asia":
-        map_settings = ("naturalEarth1", 300, [-100, 300])
-    elif selected_continent == "Europe":
-        map_settings = ("naturalEarth1", 500, [200, 610])
-    elif selected_continent == "Americas":
-        map_settings = ("naturalEarth1", 150, [600, 250])
-    elif selected_continent == "Oceania":
-        map_settings = ("naturalEarth1", 400, [-450, 0])
+
     map = (
         alt.Chart(world_map)
         .mark_geoshape(fill="#2a1d0c", stroke="#706545")
-        .project(type=map_settings[0], scale=map_settings[1], translate=map_settings[2])
         .configure_view(strokeWidth=0)
     ).properties(width=720, height=400)
 
+    if selected_continent != "All":
+        if selected_continent == "Africa":
+            map_settings = ("naturalEarth1", 300, [200, 210])
+        elif selected_continent == "Asia":
+            map_settings = ("naturalEarth1", 300, [-100, 300])
+        elif selected_continent == "Europe":
+            map_settings = ("naturalEarth1", 500, [200, 610])
+        elif selected_continent == "Americas":
+            map_settings = ("naturalEarth1", 150, [600, 250])
+        elif selected_continent == "Oceania":
+            map_settings = ("naturalEarth1", 400, [-450, 0])
+        map = (
+            alt.Chart(world_map)
+            .mark_geoshape(fill="#2a1d0c", stroke="#706545")
+            .project(
+                type=map_settings[0], scale=map_settings[1], translate=map_settings[2]
+            )
+            .configure_view(strokeWidth=0)
+        ).properties(width=720, height=400)
+
     return map.to_html()
 
-cols = {'gdpPercap': 'GDP', 'lifeExp': 'Life Expectancy'}
+
+cols = {"gdpPercap": "GDP", "lifeExp": "Life Expectancy"}
+
 
 def time_series_plot(df, ycol, all_continents=False):
 
     if not all_continents:
-        chart = alt.Chart(df). mark_line().encode(
-            x=alt.X('year', title = 'Year', axis=alt.Axis(format='1000')),
-            y=alt.Y(ycol, title = cols[ycol]),
-            color = "country:O",
-            tooltip=[ycol, 'year']).interactive()
+        chart = (
+            alt.Chart(df)
+            .mark_line()
+            .encode(
+                x=alt.X("year", title="Year", axis=alt.Axis(format="1000")),
+                y=alt.Y(ycol, title=cols[ycol]),
+                color="country:O",
+                tooltip=[ycol, "year"],
+            )
+            .interactive()
+        )
 
     else:
-        chart = alt.Chart(df). mark_line().encode(
-            x=alt.X('year', title = 'Year', axis=alt.Axis(format='1000')),
-            y=alt.Y(ycol, title = cols[ycol]),
-            color = "continent:O",
-            tooltip=[ycol, 'year']).interactive()
-    
+        chart = (
+            alt.Chart(df)
+            .mark_line()
+            .encode(
+                x=alt.X("year", title="Year", axis=alt.Axis(format="1000")),
+                y=alt.Y(ycol, title=cols[ycol]),
+                color="continent:O",
+                tooltip=[ycol, "year"],
+            )
+            .interactive()
+        )
+
     return chart.to_html()
 
-def plot_timeseries_filtered(selected_continent="All", selected_countries = None, timeseries_col="gdpPercap:Q"):
+
+def plot_timeseries_filtered(
+    selected_continent="All", selected_countries=None, timeseries_col="gdpPercap:Q"
+):
 
     if selected_continent == "All":
-        data = get_grouped_continent(selected_continent,selected_countries).mean().reset_index()
-        title = f'{cols[timeseries_col]} for all continents'
+        data = (
+            get_grouped_continent(selected_continent, selected_countries)
+            .mean()
+            .reset_index()
+        )
+        title = f"{cols[timeseries_col]} for all continents"
         return (time_series_plot(data, timeseries_col, True), title)
-    
+
     elif selected_countries is None or selected_countries == []:
         print("jbsjhbcsbcsb\n\n\n\n\n\n\n")
         print(selected_countries)
-        grouped = get_grouped_continent(selected_continent,selected_countries).mean().reset_index()
-        filtered = grouped.query(
-            "(continent == @selected_continent)"
+        grouped = (
+            get_grouped_continent(selected_continent, selected_countries)
+            .mean()
+            .reset_index()
         )
-        title = f'{cols[timeseries_col]} for all countries in {selected_continent}'
+        filtered = grouped.query("(continent == @selected_continent)")
+        title = f"{cols[timeseries_col]} for all countries in {selected_continent}"
         return (time_series_plot(filtered, timeseries_col, True), title)
-
 
     else:
         filtered = get_grouped_continent(selected_continent, selected_countries)

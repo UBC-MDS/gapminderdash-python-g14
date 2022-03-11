@@ -1,6 +1,3 @@
-from this import d
-from time import time
-from turtle import ht
 from dash import Dash, Input, Output, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc

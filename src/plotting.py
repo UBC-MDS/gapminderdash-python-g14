@@ -1,4 +1,3 @@
-from turtle import title
 import altair as alt
 from src.queries import get_continent_data_filtered_year, get_grouped_continent
 import pandas as pd

@@ -8,10 +8,10 @@ map_card = (
                 html.H4("Map", className="card-title"),
                 html.Iframe(
                     id="map",
-                    style={"border-width": "0", "width": "100%", "height": "450px"},
+                    style={"border-width": "0", "width": "100%", "height": "300px"},
                 ),
             ]
         ),
-        className="mt-3",
+        className="mt-3 mb-3",
     ),
 )

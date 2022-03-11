@@ -1,4 +1,6 @@
+from this import d
 from time import time
+from turtle import ht
 from dash import Dash, Input, Output, html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
@@ -13,7 +15,7 @@ from src.plotting import (
     plot_countries_kpis,
     plot_continent_kpis,
     draw_map,
-    plot_timeseries_filtered
+    plot_timeseries_filtered,
 )
 
 from src.component_app_header import app_header
@@ -27,34 +29,37 @@ from src.component_timeseries import timeseries_card
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
-app.layout = dbc.Container(
-    fluid=True,
-    children=[
-        html.Div(
+app.title = "gapminderDash"
+
+app.layout = html.Div(
+    [
+        dbc.Container(dbc.Row(app_header), fluid=True),
+        dbc.Container(
             [
-                dbc.Row(app_header),  # row 1: app header
                 dbc.Row(
                     [
-                        dbc.Col(map_card, width=8),
-                        dbc.Col(timeseries_card, width = 4)
+                        dbc.Col(
+                            [
+                                dbc.Row(dbc.Col(map_card, width=12)),
+                                dbc.Row(dbc.Col(countries_kpi_cards_div, width=12)),
+                                dbc.Row(dbc.Col(continent_kpi_cards, width=12)),
+                            ],
+                            width=6,
+                        ),
+                        dbc.Col(
+                            [
+                                dbc.Row(dbc.Col(timeseries_card, width=12)),
+                                dbc.Row(dbc.Col(top_gdp_card, width=12)),
+                                dbc.Row(dbc.Col(gdp_exp_card, width=12)),
+                            ],
+                            width=6,
+                        ),
                     ]
-                ),
-                dbc.Row(  # row 2: country kpis and ...
-                    [
-                        dbc.Col(countries_kpi_cards_div, width=6),
-                        dbc.Col(continent_kpi_cards, width=6),
-                    ]
-                ),
-                dbc.Row(  # row 4: continent kpis and ...
-                    [
-                        dbc.Col(gdp_exp_card, width=6),
-                        dbc.Col(top_gdp_card, width=6),
-                    ]
-                ),
-            ]
-        )
-    ],
-    style={"padding": "5px 5px"},
+                )
+            ],
+            class_name="mb-3",
+        ),
+    ]
 )
 
 # example of country dropdown options being updated based on selected continent
@@ -137,14 +142,16 @@ def update_continent_kpis(selected_continent, selected_countries):
 
 # Update time series plot
 @app.callback(
-    Output(component_id="timeseries-plot", component_property= "srcDoc"),
-    Output(component_id='timeseries-title', component_property='children'),
+    Output(component_id="timeseries-plot", component_property="srcDoc"),
+    Output(component_id="timeseries-title", component_property="children"),
     Input(component_id="continent-selector", component_property="value"),
     Input(component_id="country-selector", component_property="value"),
     Input(component_id="timeseries-col", component_property="value"),
 )
 def update_plot_timeseries(selected_continent, selected_countries, timeseries_col):
-    return plot_timeseries_filtered(selected_continent, selected_countries, timeseries_col)
+    return plot_timeseries_filtered(
+        selected_continent, selected_countries, timeseries_col
+    )
 
 
 if __name__ == "__main__":

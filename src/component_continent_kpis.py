@@ -1,11 +1,12 @@
+from turtle import st
 from dash import html
 import dash_bootstrap_components as dbc
 
 continent_kpi_cards = dbc.Card(
     [
-        dbc.CardHeader([html.H4("Continent Key Stats", className="card-title")]),
         dbc.CardBody(
             [
+                html.H4("Continent Key Stats", className="card-title"),
                 dbc.Row(
                     [
                         dbc.Col(
@@ -17,7 +18,7 @@ continent_kpi_cards = dbc.Card(
                                                 children="GDP",
                                                 className="card-title",
                                                 style={
-                                                    "font-size": "32px",
+                                                    "font-size": "24px",
                                                     "font-weight": "lighter",
                                                     "text-align": "center",
                                                 },
@@ -36,7 +37,7 @@ continent_kpi_cards = dbc.Card(
                                                 children="-",
                                                 className="card-text",
                                                 style={
-                                                    "font-size": "24px",
+                                                    "font-size": "18px",
                                                     "font-weight": "bold",
                                                     "text-align": "center",
                                                 },
@@ -46,7 +47,9 @@ continent_kpi_cards = dbc.Card(
                                 ],
                                 color="primary",
                                 inverse=True,
-                            )
+                                style={"min-height": "200px"},
+                            ),
+                            width=4,
                         ),
                         dbc.Col(
                             dbc.Card(
@@ -57,7 +60,7 @@ continent_kpi_cards = dbc.Card(
                                                 children="Population",
                                                 className="card-title",
                                                 style={
-                                                    "font-size": "32px",
+                                                    "font-size": "24px",
                                                     "font-weight": "lighter",
                                                     "text-align": "center",
                                                 },
@@ -76,7 +79,7 @@ continent_kpi_cards = dbc.Card(
                                                 children="-",
                                                 className="card-text",
                                                 style={
-                                                    "font-size": "24px",
+                                                    "font-size": "18px",
                                                     "font-weight": "bold",
                                                     "text-align": "center",
                                                 },
@@ -86,7 +89,9 @@ continent_kpi_cards = dbc.Card(
                                 ],
                                 color="info",
                                 inverse=True,
-                            )
+                                style={"min-height": "200px"},
+                            ),
+                            width=4,
                         ),
                         dbc.Col(
                             dbc.Card(
@@ -97,7 +102,7 @@ continent_kpi_cards = dbc.Card(
                                                 children="Life Expectancy",
                                                 className="card-title",
                                                 style={
-                                                    "font-size": "32px",
+                                                    "font-size": "24px",
                                                     "font-weight": "lighter",
                                                     "text-align": "center",
                                                 },
@@ -116,7 +121,7 @@ continent_kpi_cards = dbc.Card(
                                                 children="-",
                                                 className="card-text",
                                                 style={
-                                                    "font-size": "24px",
+                                                    "font-size": "18px",
                                                     "font-weight": "bold",
                                                     "text-align": "center",
                                                 },
@@ -126,11 +131,15 @@ continent_kpi_cards = dbc.Card(
                                 ],
                                 color="secondary",
                                 inverse=True,
-                            )
+                                style={"min-height": "200px"},
+                            ),
+                            width=4,
                         ),
                     ]
                 ),
             ]
         ),
-    ]
+    ],
+    class_name="mt-3",
+    style={"height": "275px"},
 )

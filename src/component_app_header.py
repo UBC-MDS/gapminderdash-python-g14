@@ -1,4 +1,3 @@
-from ast import Div
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 from src.queries import (

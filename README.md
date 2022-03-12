@@ -23,6 +23,7 @@ A basic overview of the dashboard is as follows:
 -   The app can be run from the terminal as described in the installation section
 -   The landing page shows data for all continents by default.
 -   Select the desired continent and/or countries to analyze their performance in terms of key performance indicators (GDP, life expectancy and population)
+-   The time series plot also lets the user select the metric (GDP or life expectancy) to review trends exhibited by those measures across the years based on the input selection.
 
 ## Proposed Dashboard Layout
 
@@ -30,13 +31,9 @@ A basic overview of the dashboard is as follows:
 
 ## Contributions
 
-Contributors:
--   Amir Abbas Shojakhani
--   Luke Collins
--   Sukhleen Kaur.
+Contributors: - Amir Abbas Shojakhani - Luke Collins - Sukhleen Kaur.
 
 We welcome and recognize all contributions. Please find the guide for contribution in [Contributing document](https://github.com/UBC-MDS/gapminderdash-python-g14/blob/feat-map/CONTRIBUTING.md).
-
 
 ## Installation
 
@@ -52,23 +49,23 @@ To run the app locally:
 
 2.  In the command line, enter:
 
+```{=html}
+<!-- -->
 ```
-python app.py
-```
-
+    python app.py
 
 3.  Copy the address printed out after "Dash is running on" to a browser to view the Dash app.
-
 
 ### Run the app locally
 
 To run this app using Docker write the following commands after cloning the repo:
 
-```bash
+``` bash
 cd gapminderdash-python-g14
 docker-compose up
 ```
-Finally, open the app in the following URL http://localhost:8000/
+
+Finally, open the app in the following URL <http://localhost:8000/>
 
 ## License
 

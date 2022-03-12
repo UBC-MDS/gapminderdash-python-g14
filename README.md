@@ -59,6 +59,17 @@ python app.py
 
 3.  Copy the address printed out after "Dash is running on" to a browser to view the Dash app.
 
+
+### Run the app locally
+
+To run this app using Docker write the following commands after cloning the repo:
+
+```bash
+cd gapminderdash-python-g14
+docker-compose up
+```
+Finally, open the app in the following URL http://localhost:8000/
+
 ## License
 
 `python-dash-proj-g14` was created by Amir Abbas Shojakhani, Luke Collins and Sukhleen Kaur. It is licensed under the terms of the MIT license.

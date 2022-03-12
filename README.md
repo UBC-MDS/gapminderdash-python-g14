@@ -49,10 +49,9 @@ To run the app locally:
 
 2.  In the command line, enter:
 
-```{=html}
-<!-- -->
+```bash
+python app.py
 ```
-    python app.py
 
 3.  Copy the address printed out after "Dash is running on" to a browser to view the Dash app.
 

@@ -27,7 +27,7 @@ A basic overview of the dashboard is as follows:
 
 ## Proposed Dashboard Layout
 
-<img src="https://github.com/UBC-MDS/gapminderdash-python-g14/blob/main/dashboard-mockup-v1.jpg?raw=true" alt="Dashboard Mockup V1" width="800"/>
+<img width="800" alt="pythondash-milestone4" src="https://user-images.githubusercontent.com/75291170/159137867-5e8584ff-8ec8-480d-99cc-ad55be7618bb.PNG">
 
 ## Contributions
 

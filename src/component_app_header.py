@@ -29,7 +29,18 @@ app_header = dbc.Container(
                     options=get_labels_countries_in_continent_code(),
                     multi=True,
                 ),
-                width=5,
+                width=4,
+            ),
+            dbc.Col(
+                dbc.Button(
+                    "Help",
+                    id="help-collapse_btn",
+                    outline=True,
+                    color="info",
+                    className="me-1",
+                    n_clicks=0,
+                ),
+                width=1,
             ),
         ]
     ),

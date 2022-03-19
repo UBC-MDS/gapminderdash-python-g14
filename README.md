@@ -25,6 +25,10 @@ A basic overview of the dashboard is as follows:
 -   Select the desired continent and/or countries to analyze their performance in terms of key performance indicators (GDP, life expectancy and population)
 -   The time series plot also lets the user select the metric (GDP or life expectancy) to review trends exhibited by those measures across the years based on the input selection.
 
+A help panel is available on the dashboard and can be accessed by clicking the 'Help' button. Here, users will find details about the charts available on the dashboard. 
+
+<img width="800" alt="pythondash-helppanel-milestone4" src="https://user-images.githubusercontent.com/75291170/159138122-168a2e12-fc52-4553-b6f2-6668dbe0d692.PNG">
+
 ## Proposed Dashboard Layout
 
 <img width="800" alt="pythondash-milestone4" src="https://user-images.githubusercontent.com/75291170/159137867-5e8584ff-8ec8-480d-99cc-ad55be7618bb.PNG">

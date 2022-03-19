@@ -89,11 +89,11 @@ def plot_gdp_exp(selected_continent="All", selected_countries=None):
         alt.Chart(plot_data)
         .mark_circle()
         .encode(
-            x="lifeExp",
-            y=alt.Y("gdpPercap", sort="-x"),
+            x=alt.X("lifeExp", title="Life Expectancy"),
+            y=alt.Y("gdpPercap", sort="-x", title="GDP Per Capita"),
             color=alt.Color("highlight", legend=None),
             tooltip="country",
-            size="pop",
+            size=alt.Size("pop", title="Population"),
         )
         .interactive()
         .configure_axis(grid=False)
@@ -130,14 +130,14 @@ def plot_topGdp(selected_continent="All", selected_countries=None):
         alt.Chart(plot_data)
         .mark_bar()
         .encode(
-            x="gdpPercap",
-            y=alt.Y("country", sort="-x"),
+            x=alt.X("gdpPercap", title="GDP Per Capita"),
+            y=alt.Y("country", sort="-x", title="Country"),
             color=alt.Color("highlight", legend=None),
         )
         .interactive()
         .configure_axis(grid=False)
         .configure_view(strokeWidth=0)
-    ).properties(width=350, height=120)
+    ).properties(width=350, height=100)
     return chart.to_html()
 
 

@@ -2,7 +2,9 @@
 
 # python-dash-proj-g14
 
-Gapminder dashboard project for DSCI 532
+Welcome to our Gapminder dashboard project for DSCI 532!
+
+The deployed version of the app can be found [here](https://gapdash14.herokuapp.com/):
 
 ## App Description
 
@@ -15,8 +17,6 @@ The default view of the dashboard is comprised of a chloropleth map (which discl
 The dashboard can be of significant use for consumers who wish to identify systematic misconceptions about important global trends/ proportions and examine how they evolved over the years.
 
 ## Usage
-
-The deployed version of the app can be found [here](https://gapdash14.herokuapp.com/):
 
 A basic overview of the dashboard is as follows:
 
@@ -31,7 +31,11 @@ A basic overview of the dashboard is as follows:
 
 ## Contributions
 
-Contributors: - Amir Abbas Shojakhani - Luke Collins - Sukhleen Kaur.
+Contributors: 
+
+- Amir Abbas Shojakhani
+- Luke Collins 
+- Sukhleen Kaur
 
 We welcome and recognize all contributions. Please find the guide for contribution in [Contributing document](https://github.com/UBC-MDS/gapminderdash-python-g14/blob/feat-map/CONTRIBUTING.md).
 

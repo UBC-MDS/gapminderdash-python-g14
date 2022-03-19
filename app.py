@@ -1,4 +1,4 @@
-from dash import Dash, Input, Output, html
+from dash import Dash, Input, Output, html, State
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
@@ -22,6 +22,7 @@ from src.component_topgdp import top_gdp_card
 from src.component_continent_kpis import continent_kpi_cards
 from src.component_map import map_card
 from src.component_timeseries import timeseries_card
+from src.component_help_collapse import help_collapse
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
@@ -31,6 +32,7 @@ app.title = "gapminderDash"
 app.layout = html.Div(
     [
         dbc.Container(dbc.Row(app_header), fluid=True),
+        dbc.Container(dbc.Row(help_collapse), fluid=True),
         dbc.Container(
             [
                 dbc.Row(
@@ -75,6 +77,18 @@ def update_country_dd_options(continent_code):
 )
 def update_map(selected_continent):
     return draw_map(selected_continent)
+
+
+# Toggle help
+@app.callback(
+    Output("help-collapse", "is_open"),
+    [Input("help-collapse_btn", "n_clicks")],
+    [State("help-collapse", "is_open")],
+)
+def toggle_help_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open
 
 
 # Update GDP vs Life Expectancy plot
